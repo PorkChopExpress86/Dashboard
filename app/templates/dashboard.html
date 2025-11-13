@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row g-4">
+  <div class="col-12 col-xl-4">
+    <div class="card shadow-sm">
+      <div class="card-header bg-info text-white"><i class="bi bi-cloud-sun me-2"></i>Weather - {{ city }}</div>
+      <div class="card-body">
+        <div class="mb-3">
+          <span class="display-6">{{ weather.temperature_f|round(0) }}°F</span>
+          <span class="ms-2 text-muted">{{ weather.description }}</span>
+          <div class="small text-muted">H {{ weather.high_f|round(0) }}° • L {{ weather.low_f|round(0) }}°</div>
+        </div>
+
+        <hr class="my-3" />
+        <h6 class="text-primary mb-2"><i class="bi bi-clock-history me-1"></i> Hourly</h6>
+        <div class="d-flex flex-wrap gap-1">
+          {% if weather.hourly %}
+            {% for h in weather.hourly %}
+            <div class="text-center px-1 py-2 border rounded" style="flex: 0 0 calc(16.666% - 0.375rem); min-width: 50px;">
+              <div style="font-size: 0.7rem;" class="text-muted">{{ h['time'] }}</div>
+              <div class="fs-6 my-1"><i class="{{ h['icon'] }}"></i></div>
+              <div style="font-size: 0.75rem;">{{ h['temp']|round(0) }}°</div>
+              {% if h['pop'] and h['pop'] > 0 %}
+                <div style="font-size: 0.65rem;" class="text-primary">{{ (h['pop'] * 100)|round(0) }}%</div>
+              {% else %}
+                <div style="font-size: 0.65rem;" class="text-muted">&nbsp;</div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          {% else %}
+            <p class="text-muted m-0">Hourly forecast unavailable.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-xl-4">
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white"><i class="bi bi-sunrise me-2"></i>Today</div>
+      <div class="card-body">
+        {% if today_events %}
+          <ul class="list-group list-group-flush">
+            {% for e in today_events %}
+            <li class="list-group-item d-flex justify-content-between">
+              <span>{{ e.title }}</span>
+              <span class="text-muted">{{ 'All Day' if e.is_all_day else e.start.strftime('%I:%M %p') }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-muted m-0">No events today.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-xl-4">
+    <div class="card shadow-sm">
+      <div class="card-header bg-secondary text-white"><i class="bi bi-calendar-day me-2"></i>Tomorrow</div>
+      <div class="card-body">
+        {% if tomorrow_events %}
+          <ul class="list-group list-group-flush">
+            {% for e in tomorrow_events %}
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <strong>{{ e.title }}</strong>
+                <span class="text-muted">{{ 'All Day' if e.is_all_day else e.start.strftime('%I:%M %p') }}</span>
+              </div>
+              {% if e.location %}<div class="small text-muted">{{ e.location }}</div>{% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-muted m-0">No events tomorrow.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4 mt-2">
+  <div class="col-12">
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white"><i class="bi bi-calendar-week me-2"></i>This Week</div>
+      <div class="card-body">
+        {% if week_events %}
+          <ul class="list-group list-group-flush">
+            {% for e in week_events %}
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <span>{{ e.title }}</span>
+                <span class="text-muted">{{ e.start.strftime('%a %m/%d') + ' All Day' if e.is_all_day else e.start.strftime('%a %m/%d %I:%M %p') }}</span>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-muted m-0">No upcoming events.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+from datetime import datetime
+from pathlib import Path
+
+from fastapi import APIRouter, Request
+from fastapi.templating import Jinja2Templates
+
+from app.config import get_settings
+from app.services import calendar_service, weather_service
+
+
+router = APIRouter()
+
+templates = Jinja2Templates(directory=str(Path(__file__).resolve().parent.parent / "templates"))
+
+
+@router.get("/")
+def home(request: Request):
+    settings = get_settings()
+
+    now = datetime.now(calendar_service.get_tzinfo(settings.timezone))
+    today_events = calendar_service.events_today(now)
+    tomorrow_events = calendar_service.events_tomorrow(now)
+    week_events = calendar_service.events_this_week(now)
+
+    weather = weather_service.get_weather(settings.location_city)
+
+    return templates.TemplateResponse(
+        request,
+        "dashboard.html",
+        {
+            "city": settings.location_city,
+            "now": now,
+            "today_events": today_events,
+            "tomorrow_events": tomorrow_events,
+            "week_events": week_events,
+            "weather": weather,
+            "weather_lat": settings.weather_lat or 29.8,
+            "weather_lon": settings.weather_lon or -95.6,
+        },
+    )

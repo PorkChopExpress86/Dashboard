@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Soccer Practice",
+    "start": "2025-11-12T18:00:00",
+    "end": "2025-11-12T19:30:00",
+    "location": "Field A",
+    "category": "kids-sports"
+  },
+  {
+    "title": "PTA Meeting",
+    "start": "2025-11-13T19:00:00",
+    "end": "2025-11-13T20:00:00",
+    "location": "School Gym",
+    "category": "school"
+  },
+  {
+    "title": "Team Standup",
+    "start": "2025-11-12T09:00:00",
+    "end": "2025-11-12T09:15:00",
+    "location": "Online",
+    "category": "work"
+  }
+]

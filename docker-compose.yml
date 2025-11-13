@@ -1,0 +1,18 @@
+services:
+  dashboard:
+    build: .
+    image: homebrain-dashboard:local
+    container_name: homebrain-dashboard
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - APP_ENV=prod
+      - CALENDAR_CACHE_DIR=/data/cache
+    restart: unless-stopped
+    volumes:
+      - dashboard_data:/data
+
+volumes:
+  dashboard_data:

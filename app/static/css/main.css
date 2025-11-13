@@ -1,0 +1,11 @@
+body {
+  background-color: #f6f9fc;
+}
+
+.card-header {
+  font-weight: 600;
+}
+
+.list-group-item-danger {
+  color: #842029;
+}

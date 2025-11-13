@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Sign field trip form",
+    "due_date": "2025-11-12",
+    "category": "school",
+    "importance": "high"
+  },
+  {
+    "title": "Trash night",
+    "due_date": "2025-11-12",
+    "category": "home",
+    "importance": "med"
+  },
+  {
+    "title": "Pay water bill",
+    "due_date": "2025-11-14",
+    "category": "home",
+    "importance": "high"
+  }
+]
