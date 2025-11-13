@@ -1,0 +1,54 @@
+# Django build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django specific files
+*.log
+local_settings.py
+.db.sqlite3
+*.sqlite3
+
+# Environment variables
+.env
+.env.*
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Static and media files
+staticfiles/
+media/
+
+# Migrations (optional - comment out if tracking)
+# */migrations/*
+# !*/migrations/__init__.py
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test and coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Celery beat schedule file
+celerybeat-schedule
+
+# Compiled translations
+*.mo
+
+# Backup files
+*.bak
+*.orig
