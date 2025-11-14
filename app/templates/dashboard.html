@@ -52,6 +52,16 @@
         {% else %}
           <p class="text-muted m-0">No events today.</p>
         {% endif %}
+        
+        {% if today_menu %}
+          <hr class="my-3" />
+          <h6 class="text-primary mb-2"><i class="bi bi-egg-fried me-1"></i> Lunch Today</h6>
+          <ul class="list-unstyled mb-0 ms-2">
+            {% for entree in today_menu %}
+            <li class="mb-1"><i class="bi bi-circle-fill me-2" style="font-size: 0.4rem; vertical-align: middle;"></i>{{ entree }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -81,7 +91,7 @@
 </div>
 
 <div class="row g-4 mt-2">
-  <div class="col-12">
+  <div class="col-12 col-lg-6">
     <div class="card shadow-sm">
       <div class="card-header bg-primary text-white"><i class="bi bi-calendar-week me-2"></i>This Week</div>
       <div class="card-body">
@@ -98,6 +108,28 @@
           </ul>
         {% else %}
           <p class="text-muted m-0">No upcoming events.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-6">
+    <div class="card shadow-sm">
+      <div class="card-header bg-success text-white"><i class="bi bi-egg-fried me-2"></i>School Lunch Menu</div>
+      <div class="card-body">
+        {% if weekly_menu %}
+          {% for day, entrees in weekly_menu.items() %}
+          <div class="mb-3">
+            <h6 class="text-primary mb-2">{{ day }}</h6>
+            <ul class="list-unstyled mb-0 ms-3">
+              {% for entree in entrees %}
+              <li class="mb-1"><i class="bi bi-circle-fill me-2" style="font-size: 0.4rem; vertical-align: middle;"></i>{{ entree }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        {% else %}
+          <p class="text-muted m-0">Menu not available. Run the scraper to fetch this week's menu.</p>
         {% endif %}
       </div>
     </div>

@@ -5,7 +5,7 @@ from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
 
 from app.config import get_settings
-from app.services import calendar_service, weather_service
+from app.services import calendar_service, weather_service, menu_service
 
 
 router = APIRouter()
@@ -23,6 +23,8 @@ def home(request: Request):
     week_events = calendar_service.events_this_week(now)
 
     weather = weather_service.get_weather(settings.location_city)
+    weekly_menu = menu_service.get_weekly_menu()
+    today_menu = menu_service.get_today_menu(now)
 
     return templates.TemplateResponse(
         request,
@@ -36,5 +38,7 @@ def home(request: Request):
             "weather": weather,
             "weather_lat": settings.weather_lat or 29.8,
             "weather_lon": settings.weather_lon or -95.6,
+            "weekly_menu": weekly_menu,
+            "today_menu": today_menu,
         },
     )
