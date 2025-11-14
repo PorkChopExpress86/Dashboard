@@ -1,0 +1,344 @@
+menu
+notifications
+2
+translate
+more_vert
+Welcome, Guest!
+CYPRESS-FAIRBANKS ISD
+restaurant_menu
+Menus
+keyboard_arrow_up
+restaurant_menu
+[object Object]
+School Menus
+info
+[object Object]
+Support
+restaurant_menu
+School Menus
+View what's on the menu at your school today. Use the filters to narrow down the menu.
+English
+Select language
+info
+Accessibility Mode
+Daily
+Weekly
+Monthly
+keyboard_arrow_left
+keyboard_arrow_left
+Mon
+10
+NOV
+Tue
+11
+NOV
+Wed
+12
+NOV
+Thu
+13
+NOV
+Fri
+14
+NOV
+keyboard_arrow_right
+keyboard_arrow_right
+Select Date
+event
+keyboard_arrow_down
+POST ELEMENTARY
+Select School
+01
+Select Grade
+Lunch
+Select Meal Type
+TD Lunch Elementary
+Select Line(s)
+Menu Items
+for Lunch
+at
+POST ELEMENTARY
+more_vert
+Allergens
+description
+View Nutrition Info
+local_dining
+Make a Tray
+Published on 11/06/2025 at 3:20 PM
+LUNCH ENTREE
+CHICKEN & VEGETABLE POT STICKER/DUMPLING
+Grain
+Protein
+Calories
+299
+/
+Carbs
+31.55g
+Allergens:
+Wheat,Soy,Gluten
+Additional Allergens:
+Carrot,Chicken,Corn/Corn Products,Onion
+Not yet rated
+Chicken Caesar Salad
+Vegetable
+Protein
+Calories
+358
+/
+Carbs
+28.59g
+Allergens:
+Milk,Wheat,Soy,Gluten
+Additional Allergens:
+Cayenne Pepper,Chicken,Citrus,Corn/Corn Products,Mustard,Onion
+Not yet rated
+Hot Dog
+Grain
+Protein
+Calories
+290
+/
+Carbs
+22g
+Allergens:
+Milk,Wheat,Gluten
+Additional Allergens:
+Beef
+Not yet rated
+Sunbutter & Jelly Crustless Sandwich, Crackers, & String Cheese
+Grain
+Protein
+Calories
+490
+/
+Carbs
+48g
+Allergens:
+Milk,Wheat,Soy,Gluten
+Additional Allergens:
+Citrus,Corn/Corn Products,Sunflower Seeds
+Not yet rated
+VEGETABLE
+Baby Carrots
+Vegetable
+Calories
+30
+/
+Carbs
+7.01g
+Allergens:
+None listed
+Additional Allergens:
+None listed
+Not yet rated
+Garden Salad
+Vegetable
+Calories
+17
+/
+Carbs
+3.71g
+Allergens:
+None listed
+Additional Allergens:
+Cucumber/Pickles,Tomatoes
+Not yet rated
+Stir Fry Vegetables
+Vegetable
+Calories
+32
+/
+Carbs
+6.51g
+Allergens:
+Milk
+Additional Allergens:
+Onion
+Not yet rated
+FRUIT
+Banana
+Fruit
+Calories
+121
+/
+Carbs
+31.06g
+Allergens:
+None listed
+Additional Allergens:
+Banana
+Not yet rated
+Fresh Apple Slices
+Fruit
+Calories
+29
+/
+Carbs
+7.83g
+Allergens:
+None listed
+Additional Allergens:
+Apples
+Not yet rated
+Fresh Cantaloupe Chunks
+Fruit
+Calories
+31
+/
+Carbs
+7.4g
+Allergens:
+None listed
+Additional Allergens:
+Melon
+Not yet rated
+Sour Watermelon Raisins
+Fruit
+Calories
+112
+/
+Carbs
+29.26g
+Allergens:
+None listed
+Additional Allergens:
+Sulfites
+Not yet rated
+Strawberry Applesauce Cup 4.5 oz
+Fruit
+Calories
+60
+/
+Carbs
+14g
+Allergens:
+None listed
+Additional Allergens:
+Apples,Strawberries
+Not yet rated
+GRAIN
+Breadsticks for Entree Salad
+Served only with...
+Grain
+Calories
+177
+/
+Carbs
+28.99g
+Allergens:
+Milk,Wheat,Soy,Gluten
+Additional Allergens:
+Onion,Oats/Oat Products
+Not yet rated
+MILK
+1% Milk - 8 oz
+Milk
+Calories
+100
+/
+Carbs
+12g
+Allergens:
+Milk
+Additional Allergens:
+None listed
+Not yet rated
+Fat-Free Chocolate Milk - 8 oz
+Milk
+Calories
+110
+/
+Carbs
+18g
+Allergens:
+Milk
+Additional Allergens:
+Chocolate/Cocoa,Corn/Corn Products
+Not yet rated
+Soy Milk
+Milk
+Calories
+120
+/
+Carbs
+15g
+Allergens:
+Soy
+Additional Allergens:
+None listed
+Stars
+5
+4
+3
+2
+1
+(1)
+CONDIMENT
+DUMPLING SAUCE - CONDIMENT
+Calories
+54
+/
+Carbs
+11.84g
+Allergens:
+Wheat,Soy,Gluten,Sesame
+Additional Allergens:
+Cayenne Pepper,Citrus,Corn/Corn Products,Onion
+Not yet rated
+Ketchup
+Calories
+20
+/
+Carbs
+6g
+Allergens:
+None listed
+Additional Allergens:
+None listed
+Not yet rated
+Mustard
+Calories
+4
+/
+Carbs
+0.5g
+Allergens:
+None listed
+Additional Allergens:
+None listed
+Not yet rated
+Ranch Dressing
+Calories
+283
+/
+Carbs
+1.31g
+Allergens:
+Milk,Egg,Soy,Gluten
+Additional Allergens:
+Citrus,Garlic,Lemon,Onion
+Not yet rated
+Soy Sauce
+Calories
+4
+/
+Carbs
+0.41g
+Allergens:
+Wheat,Soy,Gluten
+Additional Allergens:
+None listed
+Not yet rated
+Tajin
+Calories
+2
+/
+Carbs
+0g
+Allergens:
+None listed
+Additional Allergens:
+None listed
+Not yet rated
+This institution is an equal opportunity provider.
+Copyright © 2016-2025 Cybersoft Technologies, Inc. All rights reserved.

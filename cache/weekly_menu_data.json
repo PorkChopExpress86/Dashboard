@@ -1,0 +1,806 @@
+{
+  "view_id": "4322524b-1f7e-476a-9139-814c671143ef",
+  "scraped_at": "2025-11-14T02:00:07.444831",
+  "week_dates": [
+    "Mon 10 NOV",
+    "Tue 11 NOV",
+    "Wed 12 NOV",
+    "Thu 13 NOV",
+    "Fri 14 NOV"
+  ],
+  "weekly_menus": {
+    "Mon 10 NOV": {
+      "entrees": [
+        {
+          "name": "Breaded Chicken Sandwich",
+          "calories": "330",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Shredded Chicken Taco",
+          "calories": "130",
+          "allergens": [
+            "Milk",
+            "Soy"
+          ]
+        },
+        {
+          "name": "Yogurt Box Entree",
+          "calories": "420",
+          "allergens": [
+            "Milk"
+          ]
+        }
+      ],
+      "vegetables": [
+        {
+          "name": "Baby Carrots",
+          "calories": "30",
+          "allergens": []
+        },
+        {
+          "name": "Garden Fresh Grape Tomato Medley",
+          "calories": "15",
+          "allergens": []
+        },
+        {
+          "name": "Refried Beans",
+          "calories": "192",
+          "allergens": [
+            "Milk"
+          ]
+        }
+      ],
+      "fruits": [
+        {
+          "name": "Fresh Apple Slices",
+          "calories": "29",
+          "allergens": []
+        },
+        {
+          "name": "Sour Watermelon Raisins",
+          "calories": "112",
+          "allergens": []
+        },
+        {
+          "name": "Strawberry Applesauce Cup 4.5 oz",
+          "calories": "60",
+          "allergens": []
+        },
+        {
+          "name": "SPANISH RICE",
+          "calories": "116",
+          "allergens": [
+            "Soy"
+          ]
+        }
+      ],
+      "milk": [
+        {
+          "name": "1% Milk - 8 oz",
+          "calories": "100",
+          "allergens": [
+            "Milk"
+          ]
+        },
+        {
+          "name": "Fat-Free Chocolate Milk - 8 oz",
+          "calories": "110",
+          "allergens": [
+            "Milk"
+          ]
+        },
+        {
+          "name": "Soy Milk",
+          "calories": "120",
+          "allergens": [
+            "Soy"
+          ]
+        }
+      ],
+      "condiments": [
+        {
+          "name": "Cy-Fair Sauce",
+          "calories": "300",
+          "allergens": [
+            "Milk",
+            "Egg",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Jalapenos",
+          "calories": "11",
+          "allergens": []
+        },
+        {
+          "name": "Ketchup",
+          "calories": "20",
+          "allergens": []
+        },
+        {
+          "name": "Mayonnaise",
+          "calories": "60",
+          "allergens": [
+            "Egg",
+            "Soy"
+          ]
+        },
+        {
+          "name": "Pickles",
+          "calories": "0",
+          "allergens": []
+        },
+        {
+          "name": "Ranch Dressing",
+          "calories": "283",
+          "allergens": [
+            "Milk",
+            "Egg",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Salsa",
+          "calories": "36",
+          "allergens": [
+            "Soy"
+          ]
+        },
+        {
+          "name": "Sour Cream",
+          "calories": "55",
+          "allergens": [
+            "Milk"
+          ]
+        }
+      ]
+    },
+    "Tue 11 NOV": {
+      "entrees": [
+        {
+          "name": "Cheeseburger",
+          "calories": "301",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Chicken Caesar Salad",
+          "calories": "358",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Hamburger",
+          "calories": "260",
+          "allergens": [
+            "Wheat",
+            "Soy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Sunbutter & Jelly Crustless Sandwich, Crackers, & String Cheese",
+          "calories": "490",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        }
+      ],
+      "vegetables": [
+        {
+          "name": "Baby Carrots",
+          "calories": "30",
+          "allergens": []
+        },
+        {
+          "name": "Garden Salad",
+          "calories": "17",
+          "allergens": []
+        },
+        {
+          "name": "Tater Tots",
+          "calories": "167",
+          "allergens": [
+            "Soy"
+          ]
+        }
+      ],
+      "fruits": [
+        {
+          "name": "Banana",
+          "calories": "121",
+          "allergens": []
+        },
+        {
+          "name": "Fresh Apple Slices",
+          "calories": "29",
+          "allergens": []
+        },
+        {
+          "name": "Orange Smiles",
+          "calories": "63",
+          "allergens": []
+        },
+        {
+          "name": "Sour Watermelon Raisins",
+          "calories": "112",
+          "allergens": []
+        },
+        {
+          "name": "Strawberry Applesauce Cup 4.5 oz",
+          "calories": "60",
+          "allergens": []
+        },
+        {
+          "name": "Served only with...",
+          "calories": "177",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        }
+      ],
+      "milk": [
+        {
+          "name": "1% Milk - 8 oz",
+          "calories": "100",
+          "allergens": [
+            "Milk"
+          ]
+        },
+        {
+          "name": "Fat-Free Chocolate Milk - 8 oz",
+          "calories": "110",
+          "allergens": [
+            "Milk"
+          ]
+        },
+        {
+          "name": "Soy Milk",
+          "calories": "120",
+          "allergens": [
+            "Soy"
+          ]
+        }
+      ],
+      "condiments": [
+        {
+          "name": "Ketchup",
+          "calories": "20",
+          "allergens": []
+        },
+        {
+          "name": "Mayonnaise",
+          "calories": "60",
+          "allergens": [
+            "Egg",
+            "Soy"
+          ]
+        },
+        {
+          "name": "Mustard",
+          "calories": "4",
+          "allergens": []
+        },
+        {
+          "name": "Pickles",
+          "calories": "0",
+          "allergens": []
+        },
+        {
+          "name": "Ranch Dressing",
+          "calories": "283",
+          "allergens": [
+            "Milk",
+            "Egg",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Tajin",
+          "calories": "2",
+          "allergens": []
+        }
+      ]
+    },
+    "Wed 12 NOV": {
+      "entrees": [
+        {
+          "name": "Cheese Pizza",
+          "calories": "340",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Chicken Caesar Salad",
+          "calories": "358",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Pepperoni Pizza",
+          "calories": "375",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Yogurt Box Entree",
+          "calories": "420",
+          "allergens": [
+            "Milk"
+          ]
+        }
+      ],
+      "vegetables": [
+        {
+          "name": "Baby Carrots",
+          "calories": "30",
+          "allergens": []
+        },
+        {
+          "name": "Fresh Cucumber Slices",
+          "calories": "8",
+          "allergens": []
+        },
+        {
+          "name": "Garden Salad",
+          "calories": "17",
+          "allergens": []
+        }
+      ],
+      "fruits": [
+        {
+          "name": "Banana",
+          "calories": "121",
+          "allergens": []
+        },
+        {
+          "name": "Fresh Apple Slices",
+          "calories": "29",
+          "allergens": []
+        },
+        {
+          "name": "Sour Watermelon Raisins",
+          "calories": "112",
+          "allergens": []
+        },
+        {
+          "name": "Strawberry Applesauce Cup 4.5 oz",
+          "calories": "60",
+          "allergens": []
+        },
+        {
+          "name": "Watermelon Cubes",
+          "calories": "27",
+          "allergens": []
+        },
+        {
+          "name": "Served only with...",
+          "calories": "177",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        }
+      ],
+      "milk": [
+        {
+          "name": "1% Milk - 8 oz",
+          "calories": "100",
+          "allergens": [
+            "Milk"
+          ]
+        },
+        {
+          "name": "Fat-Free Chocolate Milk - 8 oz",
+          "calories": "110",
+          "allergens": [
+            "Milk"
+          ]
+        },
+        {
+          "name": "Soy Milk",
+          "calories": "120",
+          "allergens": [
+            "Soy"
+          ]
+        }
+      ],
+      "condiments": [
+        {
+          "name": "Parmesan",
+          "calories": "15",
+          "allergens": [
+            "Milk"
+          ]
+        },
+        {
+          "name": "Ranch Dressing",
+          "calories": "283",
+          "allergens": [
+            "Milk",
+            "Egg",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Tajin",
+          "calories": "2",
+          "allergens": []
+        }
+      ]
+    },
+    "Thu 13 NOV": {
+      "entrees": [
+        {
+          "name": "CHICKEN & VEGETABLE POT STICKER/DUMPLING",
+          "calories": "299",
+          "allergens": [
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Chicken Caesar Salad",
+          "calories": "358",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Hot Dog",
+          "calories": "290",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Sunbutter & Jelly Crustless Sandwich, Crackers, & String Cheese",
+          "calories": "490",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        }
+      ],
+      "vegetables": [
+        {
+          "name": "Baby Carrots",
+          "calories": "30",
+          "allergens": []
+        },
+        {
+          "name": "Garden Salad",
+          "calories": "17",
+          "allergens": []
+        },
+        {
+          "name": "Stir Fry Vegetables",
+          "calories": "32",
+          "allergens": [
+            "Milk"
+          ]
+        }
+      ],
+      "fruits": [
+        {
+          "name": "Banana",
+          "calories": "121",
+          "allergens": []
+        },
+        {
+          "name": "Fresh Apple Slices",
+          "calories": "29",
+          "allergens": []
+        },
+        {
+          "name": "Fresh Cantaloupe Chunks",
+          "calories": "31",
+          "allergens": []
+        },
+        {
+          "name": "Sour Watermelon Raisins",
+          "calories": "112",
+          "allergens": []
+        },
+        {
+          "name": "Strawberry Applesauce Cup 4.5 oz",
+          "calories": "60",
+          "allergens": []
+        },
+        {
+          "name": "Served only with...",
+          "calories": "177",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        }
+      ],
+      "milk": [
+        {
+          "name": "1% Milk - 8 oz",
+          "calories": "100",
+          "allergens": [
+            "Milk"
+          ]
+        },
+        {
+          "name": "Fat-Free Chocolate Milk - 8 oz",
+          "calories": "110",
+          "allergens": [
+            "Milk"
+          ]
+        },
+        {
+          "name": "Soy Milk",
+          "calories": "120",
+          "allergens": [
+            "Soy"
+          ]
+        }
+      ],
+      "condiments": [
+        {
+          "name": "DUMPLING SAUCE - CONDIMENT",
+          "calories": "54",
+          "allergens": [
+            "Wheat",
+            "Soy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Ketchup",
+          "calories": "20",
+          "allergens": []
+        },
+        {
+          "name": "Mustard",
+          "calories": "4",
+          "allergens": []
+        },
+        {
+          "name": "Ranch Dressing",
+          "calories": "283",
+          "allergens": [
+            "Milk",
+            "Egg",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Soy Sauce",
+          "calories": "4",
+          "allergens": [
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Tajin",
+          "calories": "2",
+          "allergens": []
+        }
+      ]
+    },
+    "Fri 14 NOV": {
+      "entrees": [
+        {
+          "name": "CHICKEN CHUNKS- USDA (GOLDCREEK)",
+          "calories": "190",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Mini Corn Dogs",
+          "calories": "271",
+          "allergens": [
+            "Egg",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "SPICY CHICKEN CHUNKS- USDA",
+          "calories": "143",
+          "allergens": [
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Yogurt Box Entree",
+          "calories": "420",
+          "allergens": [
+            "Milk"
+          ]
+        }
+      ],
+      "vegetables": [
+        {
+          "name": "Baby Carrots",
+          "calories": "30",
+          "allergens": []
+        },
+        {
+          "name": "Fresh Cucumber Slices",
+          "calories": "8",
+          "allergens": []
+        },
+        {
+          "name": "Garden Salad",
+          "calories": "17",
+          "allergens": []
+        }
+      ],
+      "fruits": [
+        {
+          "name": "Banana",
+          "calories": "121",
+          "allergens": []
+        },
+        {
+          "name": "Berry Cobbler",
+          "calories": "227",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Fresh Apple Slices",
+          "calories": "29",
+          "allergens": []
+        },
+        {
+          "name": "Sour Watermelon Raisins",
+          "calories": "112",
+          "allergens": []
+        },
+        {
+          "name": "Strawberry Applesauce Cup 4.5 oz",
+          "calories": "60",
+          "allergens": []
+        },
+        {
+          "name": "Wheat Roll",
+          "calories": "181",
+          "allergens": [
+            "Milk",
+            "Egg",
+            "Wheat",
+            "Gluten"
+          ]
+        }
+      ],
+      "milk": [
+        {
+          "name": "1% Milk - 8 oz",
+          "calories": "100",
+          "allergens": [
+            "Milk"
+          ]
+        },
+        {
+          "name": "Fat-Free Chocolate Milk - 8 oz",
+          "calories": "110",
+          "allergens": [
+            "Milk"
+          ]
+        },
+        {
+          "name": "Soy Milk",
+          "calories": "120",
+          "allergens": [
+            "Soy"
+          ]
+        }
+      ],
+      "condiments": [
+        {
+          "name": "BBQ SAUCE",
+          "calories": "116",
+          "allergens": [
+            "Milk",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Cy-Fair Sauce",
+          "calories": "300",
+          "allergens": [
+            "Milk",
+            "Egg",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Ketchup",
+          "calories": "20",
+          "allergens": []
+        },
+        {
+          "name": "Mayonnaise",
+          "calories": "60",
+          "allergens": [
+            "Egg",
+            "Soy"
+          ]
+        },
+        {
+          "name": "Ranch Dressing",
+          "calories": "283",
+          "allergens": [
+            "Milk",
+            "Egg",
+            "Soy",
+            "Gluten"
+          ]
+        }
+      ]
+    }
+  }
+}

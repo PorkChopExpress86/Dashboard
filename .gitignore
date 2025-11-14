@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
 
 # Django specific files
 *.log
@@ -51,3 +52,6 @@ celerybeat-schedule
 # Backup files
 *.bak
 *.orig
+
+# Cache
+.cache/

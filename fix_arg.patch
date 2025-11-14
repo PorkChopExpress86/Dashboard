@@ -1,0 +1,10 @@
+--- a/scripts/scrape_schoolcafe.py
++++ b/scripts/scrape_schoolcafe.py
+@@ -563,6 +563,7 @@ def main() -> None:
+     parser.add_argument("--no-headless", dest="headless", action="store_false", help="Run browser visible for debugging")
+     parser.add_argument("--state", help="State name for guest flow (e.g. 'Texas')")
+     parser.add_argument("--district", help="District name for guest flow")
++    parser.add_argument("--view-id", dest="view_id", default=None, help="Direct viewID from menu URL")
+     args = parser.parse_args()
+ 
+     data = scrape_school_menu(args.school, args.grade, headless=args.headless, state=args.state, district=args.district, view_id=args.view_id)
