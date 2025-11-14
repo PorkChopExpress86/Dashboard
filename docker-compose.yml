@@ -13,6 +13,27 @@ services:
     restart: unless-stopped
     volumes:
       - dashboard_data:/data
+      - ./cache:/app/cache:ro
+
+  selenium:
+    image: selenium/standalone-chrome:118.0
+    container_name: selenium-standalone
+    ports:
+      - "4444:4444"
+    shm_size: 2g
+
+  scraper:
+    image: python:3.14-slim
+    container_name: schoolcafe-scraper
+    working_dir: /work
+    volumes:
+      - ./:/work:rw
+    depends_on:
+      - selenium
+    environment:
+      - SELENIUM_REMOTE_URL=http://selenium:4444
+    # Install project dependencies and run the scraper; override command to run other schools/grades
+    command: ["/bin/sh", "-c", "pip install -r requirements.txt && python scripts/scrape_schoolcafe.py --school \"Post Elementary\" --grade 1"]
 
 volumes:
   dashboard_data:
