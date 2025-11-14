@@ -23,7 +23,10 @@ services:
     shm_size: 2g
 
   scraper:
-    image: python:3.14-slim
+    build:
+      context: .
+      dockerfile: Dockerfile.scraper
+    image: homebrain-scraper:local
     container_name: schoolcafe-scraper
     working_dir: /work
     volumes:
@@ -32,8 +35,8 @@ services:
       - selenium
     environment:
       - SELENIUM_REMOTE_URL=http://selenium:4444
-    # Install project dependencies and run the scraper; override command to run other schools/grades
-    command: ["/bin/sh", "-c", "pip install -r requirements.txt && python scripts/scrape_schoolcafe.py --school \"Post Elementary\" --grade 1"]
+      - TZ=America/Chicago
+    restart: unless-stopped
 
 volumes:
   dashboard_data:
