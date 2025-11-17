@@ -1,139 +1,165 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="row g-4 mb-4">
-  <div class="col-12 col-xl-4">
-    <div class="card shadow-sm h-100">
-      <div class="card-header bg-info text-white"><i class="bi bi-cloud-sun me-2"></i>Weather - {{ city }}</div>
-      <div class="card-body">
-        <div class="mb-3">
-          <span class="display-6">{{ weather.temperature_f|round(0) }}°F</span>
-          <span class="ms-2 text-muted">{{ weather.description }}</span>
-          <div class="small text-muted">H {{ weather.high_f|round(0) }}° • L {{ weather.low_f|round(0) }}°</div>
-        </div>
+<!-- Hero / Title Section -->
+<div class="dashboard-header">
+  <h1 class="dashboard-title"><i class="bi bi-house-heart-fill me-3"></i>HomeBrain Dashboard</h1>
+  <p class="dashboard-subtitle">{{ city }} • Last updated: <span id="update-time">Just now</span></p>
+</div>
 
-        <hr class="my-3" />
-        <h6 class="text-primary mb-2"><i class="bi bi-clock-history me-1"></i> Hourly</h6>
-        <div class="d-flex flex-wrap gap-1">
-          {% if weather.hourly %}
-            {% for h in weather.hourly %}
-            <div class="text-center px-1 py-2 border rounded" style="flex: 0 0 calc(16.666% - 0.375rem); min-width: 50px;">
-              <div style="font-size: 0.7rem;" class="text-muted">{{ h['time'] }}</div>
-              <div class="fs-6 my-1"><i class="{{ h['icon'] }}"></i></div>
-              <div style="font-size: 0.75rem;">{{ h['temp']|round(0) }}°</div>
-              {% if h['pop'] and h['pop'] > 0 %}
-                <div style="font-size: 0.65rem;" class="text-primary">{{ (h['pop'] * 100)|round(0) }}%</div>
-              {% else %}
-                <div style="font-size: 0.65rem;" class="text-muted">&nbsp;</div>
-              {% endif %}
-            </div>
-            {% endfor %}
-          {% else %}
-            <p class="text-muted m-0">Hourly forecast unavailable.</p>
-          {% endif %}
-        </div>
-      </div>
+<!-- Three-Column Layout for 16:9 Monitors -->
+<div class="dashboard-grid">
+  <!-- Column 1: Weather -->
+  <div class="dashboard-card">
+    <div class="card-header bg-info text-white">
+      <i class="bi bi-cloud-sun me-2"></i>Weather
     </div>
-  </div>
+    <div class="card-body">
+      <div class="weather-main">
+        <div class="temperature">{{ weather.temperature_f|round(0) }}°F</div>
+        <div class="weather-condition">{{ weather.description }}</div>
+        <div class="weather-range">H {{ weather.high_f|round(0) }}° • L {{ weather.low_f|round(0) }}°</div>
+      </div>
 
-  <div class="col-12 col-xl-4">
-    <div class="card shadow-sm h-100">
-      <div class="card-header bg-primary text-white"><i class="bi bi-sunrise me-2"></i>Today</div>
-      <div class="card-body">
-        {% if today_events %}
-          <ul class="list-group list-group-flush">
-            {% for e in today_events %}
-            <li class="list-group-item d-flex justify-content-between">
-              <span>{{ e.title }}</span>
-              <span class="text-muted">{{ 'All Day' if e.is_all_day else e.start.strftime('%I:%M %p') }}</span>
-            </li>
-            {% endfor %}
-          </ul>
+      <hr class="my-4" />
+      <h6 class="section-title"><i class="bi bi-clock-history me-1"></i>Next 6 Hours</h6>
+      <div class="hourly-forecast">
+        {% if weather.hourly %}
+          {% for h in weather.hourly[:12] %}
+          <div class="hourly-box">
+            <div class="time">{{ h['time'] }}</div>
+            <div class="icon"><i class="{{ h['icon'] }}"></i></div>
+            <div class="temp">{{ h['temp']|round(0) }}°</div>
+            {% if h['pop'] and h['pop'] > 0 %}
+              <div class="pop">{{ (h['pop'] * 100)|round(0) }}%</div>
+            {% endif %}
+          </div>
+          {% endfor %}
         {% else %}
-          <p class="text-muted m-0">No events today.</p>
-        {% endif %}
-        
-        {% if today_menu %}
-          <hr class="my-3" />
-          <h6 class="text-primary mb-2"><i class="bi bi-egg-fried me-1"></i> Lunch Today</h6>
-          <ul class="list-unstyled mb-0 ms-2">
-            {% for entree in today_menu %}
-            <li class="mb-1"><i class="bi bi-circle-fill me-2" style="font-size: 0.4rem; vertical-align: middle;"></i>{{ entree }}</li>
-            {% endfor %}
-          </ul>
+          <p class="text-muted">Forecast unavailable.</p>
         {% endif %}
       </div>
     </div>
   </div>
 
-  <div class="col-12 col-xl-4">
-    <div class="card shadow-sm h-100">
-      <div class="card-header bg-secondary text-white"><i class="bi bi-calendar-day me-2"></i>Tomorrow</div>
-      <div class="card-body">
-        {% if tomorrow_events %}
-          <ul class="list-group list-group-flush">
-            {% for e in tomorrow_events %}
-            <li class="list-group-item">
-              <div class="d-flex justify-content-between">
-                <strong>{{ e.title }}</strong>
-                <span class="text-muted">{{ 'All Day' if e.is_all_day else e.start.strftime('%I:%M %p') }}</span>
-              </div>
-              {% if e.location %}<div class="small text-muted">{{ e.location }}</div>{% endif %}
-            </li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p class="text-muted m-0">No events tomorrow.</p>
-        {% endif %}
-      </div>
+  <!-- Column 2: Today & Menu -->
+  <div class="dashboard-card">
+    <div class="card-header bg-primary text-white">
+      <i class="bi bi-calendar-day me-2"></i>Today
+    </div>
+    <div class="card-body">
+      {% if today_events %}
+        <ul class="event-list">
+          {% for e in today_events %}
+          <li class="event-item">
+            <span class="event-title">{{ e.title }}</span>
+            <span class="event-time">{{ 'All Day' if e.is_all_day else e.start.strftime('%I:%M %p') }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">No events today.</p>
+      {% endif %}
+      
+      {% if today_menu %}
+        <hr class="my-4" />
+        <h6 class="section-title"><i class="bi bi-egg-fried me-1"></i>School Lunch</h6>
+        <ul class="menu-list">
+          {% for entree in today_menu %}
+          <li class="menu-item">{{ entree }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Column 3: Tomorrow -->
+  <div class="dashboard-card">
+    <div class="card-header bg-secondary text-white">
+      <i class="bi bi-calendar-day me-2"></i>Tomorrow
+    </div>
+    <div class="card-body">
+      {% if tomorrow_events %}
+        <ul class="event-list">
+          {% for e in tomorrow_events %}
+          <li class="event-item">
+            <div class="event-title">{{ e.title }}</div>
+            <div class="event-time">{{ 'All Day' if e.is_all_day else e.start.strftime('%I:%M %p') }}</div>
+            {% if e.location %}<div class="event-location">{{ e.location }}</div>{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">No events tomorrow.</p>
+      {% endif %}
+
+      {% if tomorrow_menu %}
+        <hr class="my-4" />
+        <h6 class="section-title"><i class="bi bi-egg-fried me-1"></i>School Lunch</h6>
+        <ul class="menu-list">
+          {% for entree in tomorrow_menu %}
+          <li class="menu-item">{{ entree }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
     </div>
   </div>
 </div>
 
-<div class="row g-4">
-  <div class="col-12 col-lg-6">
-    <div class="card shadow-sm h-100">
-      <div class="card-header bg-primary text-white"><i class="bi bi-calendar-week me-2"></i>This Week</div>
-      <div class="card-body">
-        {% if week_events %}
-          <ul class="list-group list-group-flush">
-            {% for e in week_events %}
-            <li class="list-group-item">
-              <div class="d-flex justify-content-between">
-                <span>{{ e.title }}</span>
-                <span class="text-muted">{{ e.start.strftime('%a %m/%d') + ' All Day' if e.is_all_day else e.start.strftime('%a %m/%d %I:%M %p') }}</span>
-              </div>
-            </li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p class="text-muted m-0">No upcoming events.</p>
-        {% endif %}
-      </div>
+<!-- Bottom Row: This Week & Weekly Menu -->
+<div class="dashboard-grid">
+  <div class="dashboard-card full-width-2col">
+    <div class="card-header bg-primary text-white">
+      <i class="bi bi-calendar-week me-2"></i>This Week
+    </div>
+    <div class="card-body">
+      {% if week_events %}
+        <ul class="event-list">
+          {% for e in week_events %}
+          <li class="event-item">
+            <span class="event-title">{{ e.title }}</span>
+            <span class="event-time">{{ e.start.strftime('%a %m/%d') + ' All Day' if e.is_all_day else e.start.strftime('%a %m/%d %I:%M %p') }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">No upcoming events.</p>
+      {% endif %}
     </div>
   </div>
 
-  <div class="col-12 col-lg-6">
-    <div class="card shadow-sm h-100">
-      <div class="card-header bg-success text-white"><i class="bi bi-egg-fried me-2"></i>School Lunch Menu</div>
-      <div class="card-body">
-        {% if weekly_menu %}
+  <div class="dashboard-card full-width-2col">
+    <div class="card-header bg-success text-white">
+      <i class="bi bi-egg-fried me-2"></i>Weekly Lunch Menu
+    </div>
+    <div class="card-body">
+      {% if weekly_menu %}
+        <div class="weekly-menu">
           {% for day, entrees in weekly_menu.items() %}
-          <div class="mb-3">
-            <h6 class="text-primary mb-2">{{ day }}</h6>
-            <ul class="list-unstyled mb-0 ms-3">
+          <div class="menu-day">
+            <h6 class="menu-day-title">{{ day }}</h6>
+            <ul class="menu-list">
               {% for entree in entrees %}
-              <li class="mb-1"><i class="bi bi-circle-fill me-2" style="font-size: 0.4rem; vertical-align: middle;"></i>{{ entree }}</li>
+              <li class="menu-item">{{ entree }}</li>
               {% endfor %}
             </ul>
           </div>
           {% endfor %}
-        {% else %}
-          <p class="text-muted m-0">Menu not available. Run the scraper to fetch this week's menu.</p>
-        {% endif %}
-      </div>
+        </div>
+      {% else %}
+        <p class="text-muted">Menu not available. Run the scraper to fetch this week's menu.</p>
+      {% endif %}
     </div>
   </div>
 </div>
+
+<script>
+  // Update "Last updated" timestamp every minute
+  function updateTime() {
+    document.getElementById('update-time').textContent = new Date().toLocaleTimeString();
+  }
+  updateTime();
+  setInterval(updateTime, 60000);
+</script>
 
 {% endblock %}

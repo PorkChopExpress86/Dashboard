@@ -1,33 +1,39 @@
 {
   "view_id": "4322524b-1f7e-476a-9139-814c671143ef",
-  "scraped_at": "2025-11-14T02:00:07.444831",
+  "scraped_at": "2025-11-17T07:04:29.160158",
   "week_dates": [
-    "Mon 10 NOV",
-    "Tue 11 NOV",
-    "Wed 12 NOV",
-    "Thu 13 NOV",
-    "Fri 14 NOV"
+    "Mon 17 NOV",
+    "Tue 18 NOV",
+    "Wed 19 NOV",
+    "Thu 20 NOV",
+    "Fri 21 NOV"
   ],
   "weekly_menus": {
-    "Mon 10 NOV": {
+    "Mon 17 NOV": {
       "entrees": [
         {
-          "name": "Breaded Chicken Sandwich",
-          "calories": "330",
+          "name": "Nacho Cheese Sauce",
+          "calories": "193",
           "allergens": [
             "Milk",
             "Wheat",
             "Soy",
-            "Gluten",
-            "Sesame"
+            "Gluten"
           ]
         },
         {
-          "name": "Shredded Chicken Taco",
-          "calories": "130",
+          "name": "Nacho/Taco Meat",
+          "calories": "299",
+          "allergens": []
+        },
+        {
+          "name": "NACHOS COMBO (MEAT AND CHEESE)",
+          "calories": "492",
           "allergens": [
             "Milk",
-            "Soy"
+            "Wheat",
+            "Soy",
+            "Gluten"
           ]
         },
         {
@@ -45,15 +51,10 @@
           "allergens": []
         },
         {
-          "name": "Garden Fresh Grape Tomato Medley",
-          "calories": "15",
-          "allergens": []
-        },
-        {
-          "name": "Refried Beans",
-          "calories": "192",
+          "name": "Seasoned Pinto Beans",
+          "calories": "108",
           "allergens": [
-            "Milk"
+            "Soy"
           ]
         }
       ],
@@ -74,11 +75,9 @@
           "allergens": []
         },
         {
-          "name": "SPANISH RICE",
-          "calories": "116",
-          "allergens": [
-            "Soy"
-          ]
+          "name": "CHIPS ROUND TORTILLA, BULK - TOSTITOS",
+          "calories": "284",
+          "allergens": []
         }
       ],
       "milk": [
@@ -106,36 +105,8 @@
       ],
       "condiments": [
         {
-          "name": "Cy-Fair Sauce",
-          "calories": "300",
-          "allergens": [
-            "Milk",
-            "Egg",
-            "Soy",
-            "Gluten"
-          ]
-        },
-        {
           "name": "Jalapenos",
           "calories": "11",
-          "allergens": []
-        },
-        {
-          "name": "Ketchup",
-          "calories": "20",
-          "allergens": []
-        },
-        {
-          "name": "Mayonnaise",
-          "calories": "60",
-          "allergens": [
-            "Egg",
-            "Soy"
-          ]
-        },
-        {
-          "name": "Pickles",
-          "calories": "0",
           "allergens": []
         },
         {
@@ -164,17 +135,26 @@
         }
       ]
     },
-    "Tue 11 NOV": {
+    "Tue 18 NOV": {
       "entrees": [
         {
-          "name": "Cheeseburger",
-          "calories": "301",
+          "name": "Breaded Chicken Sandwich",
+          "calories": "330",
           "allergens": [
             "Milk",
             "Wheat",
             "Soy",
             "Gluten",
             "Sesame"
+          ]
+        },
+        {
+          "name": "Cheese Stuffed Breadsticks",
+          "calories": "307",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Gluten"
           ]
         },
         {
@@ -185,16 +165,6 @@
             "Wheat",
             "Soy",
             "Gluten"
-          ]
-        },
-        {
-          "name": "Hamburger",
-          "calories": "260",
-          "allergens": [
-            "Wheat",
-            "Soy",
-            "Gluten",
-            "Sesame"
           ]
         },
         {
@@ -215,16 +185,14 @@
           "allergens": []
         },
         {
-          "name": "Garden Salad",
-          "calories": "17",
+          "name": "Fresh Cucumber Slices",
+          "calories": "8",
           "allergens": []
         },
         {
-          "name": "Tater Tots",
-          "calories": "167",
-          "allergens": [
-            "Soy"
-          ]
+          "name": "Garden Salad",
+          "calories": "17",
+          "allergens": []
         }
       ],
       "fruits": [
@@ -289,8 +257,23 @@
       ],
       "condiments": [
         {
+          "name": "Cy-Fair Sauce",
+          "calories": "300",
+          "allergens": [
+            "Milk",
+            "Egg",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
           "name": "Ketchup",
           "calories": "20",
+          "allergens": []
+        },
+        {
+          "name": "Marinara Sauce",
+          "calories": "37",
           "allergens": []
         },
         {
@@ -328,7 +311,7 @@
         }
       ]
     },
-    "Wed 12 NOV": {
+    "Wed 19 NOV": {
       "entrees": [
         {
           "name": "Cheese Pizza",
@@ -407,8 +390,8 @@
           "allergens": []
         },
         {
-          "name": "Watermelon Cubes",
-          "calories": "27",
+          "name": "Tropical Fruit Cup",
+          "calories": "60",
           "allergens": []
         },
         {
@@ -462,25 +445,11 @@
             "Soy",
             "Gluten"
           ]
-        },
-        {
-          "name": "Tajin",
-          "calories": "2",
-          "allergens": []
         }
       ]
     },
-    "Thu 13 NOV": {
+    "Thu 20 NOV": {
       "entrees": [
-        {
-          "name": "CHICKEN & VEGETABLE POT STICKER/DUMPLING",
-          "calories": "299",
-          "allergens": [
-            "Wheat",
-            "Soy",
-            "Gluten"
-          ]
-        },
         {
           "name": "Chicken Caesar Salad",
           "calories": "358",
@@ -490,6 +459,11 @@
             "Soy",
             "Gluten"
           ]
+        },
+        {
+          "name": "Holiday Roasted Turkey",
+          "calories": "108",
+          "allergens": []
         },
         {
           "name": "Hot Dog",
@@ -518,13 +492,16 @@
           "allergens": []
         },
         {
-          "name": "Garden Salad",
-          "calories": "17",
-          "allergens": []
+          "name": "Mashed Potatoes",
+          "calories": "79",
+          "allergens": [
+            "Milk",
+            "Soy"
+          ]
         },
         {
-          "name": "Stir Fry Vegetables",
-          "calories": "32",
+          "name": "Seasoned Green Beans",
+          "calories": "29",
           "allergens": [
             "Milk"
           ]
@@ -542,8 +519,8 @@
           "allergens": []
         },
         {
-          "name": "Fresh Cantaloupe Chunks",
-          "calories": "31",
+          "name": "Frozen Peach Cup",
+          "calories": "53",
           "allergens": []
         },
         {
@@ -557,10 +534,43 @@
           "allergens": []
         },
         {
+          "name": "2G WHITE DINNER ROLL",
+          "calories": "194",
+          "allergens": [
+            "Milk",
+            "Egg",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "BREAD DRESSING (THANKSGIVING)",
+          "calories": "225",
+          "allergens": [
+            "Milk",
+            "Egg",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
           "name": "Served only with...",
           "calories": "177",
           "allergens": [
             "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "PUMPKIN MUFFIN, 35/PAN",
+          "calories": "454",
+          "allergens": [
+            "Milk",
+            "Egg",
             "Wheat",
             "Soy",
             "Gluten"
@@ -592,24 +602,32 @@
       ],
       "condiments": [
         {
-          "name": "DUMPLING SAUCE - CONDIMENT",
-          "calories": "54",
-          "allergens": [
-            "Wheat",
-            "Soy",
-            "Gluten",
-            "Sesame"
-          ]
-        },
-        {
           "name": "Ketchup",
           "calories": "20",
           "allergens": []
         },
         {
+          "name": "Mayonnaise",
+          "calories": "60",
+          "allergens": [
+            "Egg",
+            "Soy"
+          ]
+        },
+        {
           "name": "Mustard",
           "calories": "4",
           "allergens": []
+        },
+        {
+          "name": "Poultry Gravy",
+          "calories": "63",
+          "allergens": [
+            "Milk",
+            "Wheat",
+            "Soy",
+            "Gluten"
+          ]
         },
         {
           "name": "Ranch Dressing",
@@ -622,32 +640,14 @@
           ]
         },
         {
-          "name": "Soy Sauce",
-          "calories": "4",
-          "allergens": [
-            "Wheat",
-            "Soy",
-            "Gluten"
-          ]
-        },
-        {
-          "name": "Tajin",
-          "calories": "2",
+          "name": "Thanksgiving Cranberry SAUCE, GAL",
+          "calories": "60",
           "allergens": []
         }
       ]
     },
-    "Fri 14 NOV": {
+    "Fri 21 NOV": {
       "entrees": [
-        {
-          "name": "CHICKEN CHUNKS- USDA (GOLDCREEK)",
-          "calories": "190",
-          "allergens": [
-            "Milk",
-            "Wheat",
-            "Gluten"
-          ]
-        },
         {
           "name": "Mini Corn Dogs",
           "calories": "271",
@@ -659,9 +659,10 @@
           ]
         },
         {
-          "name": "SPICY CHICKEN CHUNKS- USDA",
-          "calories": "143",
+          "name": "Steak Fingers",
+          "calories": "240",
           "allergens": [
+            "Milk",
             "Wheat",
             "Soy",
             "Gluten"
@@ -682,14 +683,17 @@
           "allergens": []
         },
         {
-          "name": "Fresh Cucumber Slices",
-          "calories": "8",
-          "allergens": []
-        },
-        {
           "name": "Garden Salad",
           "calories": "17",
           "allergens": []
+        },
+        {
+          "name": "Mashed Potatoes",
+          "calories": "79",
+          "allergens": [
+            "Milk",
+            "Soy"
+          ]
         }
       ],
       "fruits": [
@@ -697,16 +701,6 @@
           "name": "Banana",
           "calories": "121",
           "allergens": []
-        },
-        {
-          "name": "Berry Cobbler",
-          "calories": "227",
-          "allergens": [
-            "Milk",
-            "Wheat",
-            "Soy",
-            "Gluten"
-          ]
         },
         {
           "name": "Fresh Apple Slices",
@@ -724,12 +718,18 @@
           "allergens": []
         },
         {
-          "name": "Wheat Roll",
-          "calories": "181",
+          "name": "TX Fruit Slush",
+          "calories": "60",
+          "allergens": []
+        },
+        {
+          "name": "2G WHITE DINNER ROLL",
+          "calories": "194",
           "allergens": [
             "Milk",
             "Egg",
             "Wheat",
+            "Soy",
             "Gluten"
           ]
         }
@@ -759,25 +759,6 @@
       ],
       "condiments": [
         {
-          "name": "BBQ SAUCE",
-          "calories": "116",
-          "allergens": [
-            "Milk",
-            "Soy",
-            "Gluten"
-          ]
-        },
-        {
-          "name": "Cy-Fair Sauce",
-          "calories": "300",
-          "allergens": [
-            "Milk",
-            "Egg",
-            "Soy",
-            "Gluten"
-          ]
-        },
-        {
           "name": "Ketchup",
           "calories": "20",
           "allergens": []
@@ -788,6 +769,22 @@
           "allergens": [
             "Egg",
             "Soy"
+          ]
+        },
+        {
+          "name": "Mustard",
+          "calories": "4",
+          "allergens": []
+        },
+        {
+          "name": "Peppered Gravy",
+          "calories": "23",
+          "allergens": [
+            "Milk",
+            "Egg",
+            "Wheat",
+            "Soy",
+            "Gluten"
           ]
         },
         {

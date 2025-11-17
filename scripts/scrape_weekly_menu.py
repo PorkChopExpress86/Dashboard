@@ -141,21 +141,95 @@ def scrape_weekly_menu(view_id="4322524b-1f7e-476a-9139-814c671143ef"):
         # Wait for page to load
         time.sleep(8)
         
-        # Extract the week dates first
-        soup = BeautifulSoup(driver.page_source, "lxml")
-        text = soup.get_text("\n", strip=True)
-        lines = text.split("\n")
+        # Function to extract week dates from current page
+        def get_week_dates():
+            soup = BeautifulSoup(driver.page_source, "lxml")
+            text = soup.get_text("\n", strip=True)
+            lines = text.split("\n")
+            
+            dates = []
+            days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
+            for i, line in enumerate(lines):
+                if line.strip() in days:
+                    if i+2 < len(lines):
+                        date_num = lines[i+1].strip()
+                        month = lines[i+2].strip()
+                        dates.append(f"{line} {date_num} {month}")
+            return dates
         
-        week_dates = []
-        days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
-        for i, line in enumerate(lines):
-            if line.strip() in days:
-                if i+2 < len(lines):
-                    date_num = lines[i+1].strip()
-                    month = lines[i+2].strip()
-                    week_dates.append(f"{line} {date_num} {month}")
+        # Get initial week dates
+        week_dates = get_week_dates()
+        print(f"\nInitial week dates found: {week_dates}")
         
-        print(f"\nWeek dates found: {week_dates}")
+        # Check if we need to navigate to current week
+        # Parse the first date to check if it's in the past
+        if week_dates:
+            try:
+                # Parse "Mon 10 NOV" format
+                first_date_parts = week_dates[0].split()
+                if len(first_date_parts) >= 3:
+                    day_num = int(first_date_parts[1])
+                    month_abbr = first_date_parts[2].upper()
+                    
+                    # Convert month abbreviation to number
+                    month_map = {'JAN':1,'FEB':2,'MAR':3,'APR':4,'MAY':5,'JUN':6,
+                                'JUL':7,'AUG':8,'SEP':9,'OCT':10,'NOV':11,'DEC':12}
+                    month_num = month_map.get(month_abbr[:3], datetime.now().month)
+                    
+                    # Create date object for comparison
+                    current_year = datetime.now().year
+                    first_menu_date = datetime(current_year, month_num, day_num).date()
+                    today = datetime.now().date()
+                    
+                    print(f"First menu date: {first_menu_date}, Today: {today}")
+                    
+                    # If the menu week is in the past, try clicking "next week" button
+                    if first_menu_date < today:
+                        print("Menu is for a past week, attempting to navigate forward...")
+                        
+                        # Look for next/forward navigation buttons
+                        # Common selectors: arrow buttons, next buttons, etc.
+                        next_button_selectors = [
+                            "button[aria-label*='next']",
+                            "button[aria-label*='Next']",
+                            "button[title*='next']",
+                            "button[title*='Next']",
+                            ".next-week-button",
+                            "button.MuiIconButton-root:has(svg[data-testid='ArrowForwardIosIcon'])",
+                            "//button[contains(@aria-label, 'next')]",
+                            "//button[contains(@aria-label, 'Next')]",
+                        ]
+                        
+                        clicked = False
+                        for selector in next_button_selectors:
+                            try:
+                                if selector.startswith("//"):
+                                    # XPath selector
+                                    button = driver.find_element(By.XPATH, selector)
+                                else:
+                                    # CSS selector
+                                    button = driver.find_element(By.CSS_SELECTOR, selector)
+                                
+                                print(f"Found next button with selector: {selector}")
+                                button.click()
+                                time.sleep(3)
+                                
+                                # Check if we moved forward
+                                new_week_dates = get_week_dates()
+                                if new_week_dates != week_dates:
+                                    week_dates = new_week_dates
+                                    print(f"Successfully navigated to: {week_dates}")
+                                    clicked = True
+                                    break
+                            except Exception as e:
+                                continue
+                        
+                        if not clicked:
+                            print("Could not find next week button, using current week shown")
+            except Exception as e:
+                print(f"Error checking week navigation: {e}")
+        
+        print(f"\nFinal week dates: {week_dates}")
         
         # Now navigate through each day and extract menus
         weekly_menus = {}

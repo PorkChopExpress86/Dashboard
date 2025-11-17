@@ -1,0 +1,23 @@
+# syntax=docker/dockerfile:1
+FROM python:3.14-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+WORKDIR /work
+
+# Copy requirements first for better caching
+COPY requirements.txt /work/
+
+# Copy entrypoint and cron configuration
+COPY entrypoint.sh /entrypoint.sh
+COPY scraper.cron /work/scraper.cron
+
+# Make entrypoint executable
+RUN chmod +x /entrypoint.sh
+
+# Note: Python dependencies and cron will be installed by entrypoint.sh
+# This allows for easier updates without rebuilding
+
+ENTRYPOINT ["/entrypoint.sh"]
