@@ -80,3 +80,31 @@ def get_today_menu(now: datetime) -> Optional[List[str]]:
     today_key = f"{day_abbr} {date_num}"
     
     return weekly_menu.get(today_key)
+
+
+def get_tomorrow_menu(now: datetime) -> Optional[List[str]]:
+    """
+    Get tomorrow's lunch menu entrees
+    
+    Args:
+        now: Current datetime
+        
+    Returns:
+        List of entree names for tomorrow, or None if not a school day or menu not available
+    """
+    from datetime import timedelta
+    tomorrow = now + timedelta(days=1)
+    
+    # Don't show menu if tomorrow is a weekend
+    if tomorrow.weekday() >= 5:  # 5 = Saturday, 6 = Sunday
+        return None
+    
+    weekly_menu = get_weekly_menu()
+    
+    # Format tomorrow's date to match menu keys (e.g., "Mon 10", "Tue 11")
+    day_abbr = tomorrow.strftime('%a')  # Mon, Tue, Wed, etc.
+    date_num = tomorrow.strftime('%-d') if os.name != 'nt' else tomorrow.strftime('%#d')  # Remove leading zero
+    
+    tomorrow_key = f"{day_abbr} {date_num}"
+    
+    return weekly_menu.get(tomorrow_key)
