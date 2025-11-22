@@ -14,6 +14,41 @@ Designed to run on a home server via **Docker** or **bare Python**, with:
 
 ---
 
+## Purging sensitive files from Git history
+
+If you accidentally committed sensitive data (for example a populated `.env.docker` with API keys), removing it from the current commit and adding it to `.gitignore is not enough — the file still lives in your repository history. The following recipe rewrites local history to remove the file and garbage-collects the repository. BACK UP your repository first (the recipe below creates a `backup-before-purge` branch).
+
+Run these commands from the repository root (PowerShell example):
+
+```powershell
+# Optional: create a safety backup branch
+git branch backup-before-purge
+
+# Stash uncommitted work (includes untracked files)
+git stash push -u -m "pre-purge-stash"
+
+# Rewrite history to remove .env.docker from all commits
+git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch .env.docker' --prune-empty --tag-name-filter cat -- --all
+
+# Remove the backup refs created by filter-branch and fully garbage-collect
+Remove-Item -Recurse -Force .git\refs\original\* -ErrorAction SilentlyContinue
+git reflog expire --expire=now --all
+git gc --prune=now --aggressive
+
+# Restore your stashed work
+git stash pop
+```
+
+If the repository has been pushed to a remote (for example `origin`) and you want the remote to forget the file, you'll need to force-push the rewritten branches. This is disruptive for collaborators; coordinate first and rotate any secrets that were exposed.
+
+```powershell
+# Force push rewritten branches and tags
+git push --force --all
+git push --force --tags
+```
+
+After that, rotate any secrets (API keys, tokens) that were stored in the purged file — assume they have been compromised if they were pushed publicly.
+
 ## Features
 
 ### 1. Dashboard View
