@@ -57,6 +57,7 @@ All settings via `.env` file (see `.env.example`):
 - `LOCATION_CITY`: City for weather
 - `WEATHER_API_KEY`: OpenWeatherMap API key (optional)
 - `WEATHER_LAT`, `WEATHER_LON`: Coordinates for radar map
+- `WEATHER_REFRESH_MINUTES`: How often (in minutes) the app proactively refreshes the weather cache (default 60)
 - `CALENDAR_SOURCE`: `google_ics` or `local_json`
 - `GOOGLE_CALENDAR_ICAL_URL`: Single calendar ICS URL
 - `CALENDAR_ICAL_SOURCES`: Multiple calendar URLs (JSON array or object)
@@ -191,13 +192,15 @@ Run without Docker for development and testing.
    
    # Create virtual environment (Windows PowerShell)
    python -m venv .venv
+   # Activate the project's virtual environment (Windows PowerShell)
    .\.venv\Scripts\Activate.ps1
    
    # Or on Linux/macOS
    # python -m venv .venv
    # source .venv/bin/activate
    
-   pip install -r requirements.txt
+   # Install dependencies using the venv Python
+   .venv\Scripts\python -m pip install -r requirements.txt
    ```
 
 2. **Create `.env` file**:
@@ -208,15 +211,22 @@ Run without Docker for development and testing.
    Edit `.env` with your settings (see Docker example above)
 
 3. **Run the dashboard**:
-   ```bash
-   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+   ```powershell
+   # From PowerShell (with .venv active) - recommended
+   .\.venv\Scripts\Activate.ps1
+   .venv\Scripts\python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+   ```
+   
+   Or, if you prefer to call the venv Python directly without activating:
+   ```powershell
+   .venv\Scripts\python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
    ```
    
    Access at http://localhost:8000
 
 4. **Run menu scraper manually** (optional):
    ```bash
-   python scripts/scrape_weekly_menu.py
+   .venv\Scripts\python scripts/scrape_weekly_menu.py
    ```
    
    This creates/updates `cache/weekly_menu_data.json`
@@ -247,9 +257,12 @@ To enable live weather:
 
 Behavior:
 
-- Weather API results are cached per city for the process lifetime
-- Falls back to stub data if API key missing or API call fails
+- Weather API results are cached per city in-memory and a background refresher proactively updates the cached value on a configured interval.
+- The refresh interval is controlled by `WEATHER_REFRESH_MINUTES` (minutes). Default is 60 (one hour).
+- If the API key is missing or a fetch fails, the service falls back to stub data.
 - Radar map requires `WEATHER_LAT` and `WEATHER_LON` coordinates
+
+Note: The background refresher is started automatically when the app starts (so you do not need to request weather to trigger a refresh).
 
 ### Google Calendar Integration
 
@@ -395,8 +408,9 @@ Dashboard/
 .\.venv\Scripts\Activate.ps1  # Windows
 # source .venv/bin/activate    # Linux/macOS
 
-# Run tests
-pytest
+# Install dev/test deps if needed and run tests using the venv Python
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python -m pytest -q
 
 # Run with coverage
 pytest --cov=app tests/

@@ -2,6 +2,20 @@
 ## What it is
 A small web dashboard that pulls together the stuff your family actually cares about: schedules, reminders, and maybe some “house stats.”
 
+## Development environment / virtualenv
+
+When running shell commands (PowerShell or bash) for this project, make sure to use the project's virtual Python environment located at `.venv` so you run with the correct dependencies and interpreter.
+
+- PowerShell (Windows):
+  - Activate: `.\.venv\Scripts\Activate.ps1`
+  - Or call the venv Python directly: `.venv\Scripts\python -m pip install -r requirements.txt`
+
+- Bash (Linux/macOS or WSL):
+  - Activate: `source .venv/bin/activate`
+  - Or call the venv Python directly: `.venv/bin/python -m pip install -r requirements.txt`
+
+If you don't want to activate, prefix commands with the .venv Python executable to ensure the correct interpreter is used.
+
 ## Core features
 
 - Pull in:

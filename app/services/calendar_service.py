@@ -242,6 +242,16 @@ def events_today(now: Optional[datetime] = None) -> List[Event]:
     return [e for e in get_events() if start_day <= e.start <= end_day]
 
 
+def events_tonight(now: Optional[datetime] = None) -> List[Event]:
+    """Return events from now until the end of the current day (tonight).
+
+    This is a simple helper used by tests and the dashboard UI.
+    """
+    cur = _now(now)
+    end_day = datetime.combine(cur.date(), time.max, tzinfo=cur.tzinfo)
+    return [e for e in get_events() if cur <= e.start <= end_day]
+
+
 def events_tomorrow(now: Optional[datetime] = None) -> List[Event]:
     cur = _now(now)
     tomorrow = cur.date() + timedelta(days=1)

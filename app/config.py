@@ -14,6 +14,8 @@ class Settings(BaseSettings):
     timezone: str = Field(default="America/New_York", alias="TIMEZONE")
     location_city: str = Field(default="Your City", alias="LOCATION_CITY")
     weather_api_key: str | None = Field(default=None, alias="WEATHER_API_KEY")
+    # How often (in minutes) weather should be refreshed proactively / TTL for cache
+    weather_refresh_minutes: int = Field(default=60, alias="WEATHER_REFRESH_MINUTES")
     calendar_source: str = Field(default="local_json", alias="CALENDAR_SOURCE")
     weather_lat: float | None = Field(default=None, alias="WEATHER_LAT")
     weather_lon: float | None = Field(default=None, alias="WEATHER_LON")
