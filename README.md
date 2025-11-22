@@ -106,6 +106,8 @@ Dedicated Docker service (`scraper`) that:
 
 The easiest way to run the dashboard with all features including the automated scraper.
 
+Note: When running with Docker Compose you do not need to create or activate the project's `.venv` virtual environment. The container image installs the dependencies from `requirements.txt` and runs the app inside the container.
+
 #### Prerequisites
 - Docker and Docker Compose installed
 - (Optional) OpenWeatherMap API key for live weather
@@ -118,20 +120,20 @@ The easiest way to run the dashboard with all features including the automated s
    cd Dashboard
    ```
 
-2. **Create `.env` file**:
+2. **Create a Docker `.env` file** (the repository includes `.env.docker` as an example):
    ```bash
-   cp .env.example .env
+   # For Docker Compose use this file name so local tests are not affected
+   cp .env.example .env.docker
    ```
-   
-   Edit `.env` and configure:
+   Edit `.env.docker` and configure. Example values in the repo default to Chicago coordinates so they do not reveal a precise location:
    ```env
    APP_ENV=prod
    TIMEZONE=America/Chicago
-   LOCATION_CITY=Houston
+   LOCATION_CITY=Your City
    WEATHER_API_KEY=your_openweathermap_api_key
-   WEATHER_LAT=29.7604
-   WEATHER_LON=-95.3698
-   
+   WEATHER_LAT=41.8781
+   WEATHER_LON=-87.6298
+
    # Google Calendar (see Google Calendar section below)
    CALENDAR_SOURCE=google_ics
    GOOGLE_CALENDAR_ICAL_URL=https://calendar.google.com/calendar/ical/.../basic.ics
@@ -170,6 +172,23 @@ docker compose up -d --build
 
 # Manually trigger menu scraper
 docker exec schoolcafe-scraper python /work/scripts/scrape_weekly_menu.py
+
+### Rebuild everything from scratch
+
+If you want to tear down, remove images and volumes, and rebuild from a clean state:
+
+```powershell
+# Stop and remove containers, networks, volumes, and images created by compose
+docker compose down --rmi all --volumes --remove-orphans
+
+# Rebuild images from scratch (no cache) and start
+docker compose build --no-cache
+docker compose up -d --build
+```
+
+Notes:
+- The `--rmi all` and `--volumes` flags will remove local images and volumes — only do this when you want a full clean rebuild.
+- Use `--env-file .env.docker` with `docker compose up` if you want to explicitly select the env file on the CLI.
 ```
 
 ---
@@ -248,9 +267,9 @@ To enable live weather:
 
    ```env
    WEATHER_API_KEY=your_api_key_here
-   LOCATION_CITY=Houston
-   WEATHER_LAT=29.7604
-   WEATHER_LON=-95.3698
+   LOCATION_CITY=Your City
+   WEATHER_LAT=41.8781
+   WEATHER_LON=-87.6298
    ```
 
 3. Restart the app
@@ -349,6 +368,11 @@ See [`SCRAPER_README.md`](SCRAPER_README.md) for detailed commands:
 - Manual trigger: `docker exec schoolcafe-scraper python /work/scripts/scrape_weekly_menu.py`
 - Check schedule: `docker exec schoolcafe-scraper crontab -l`
 - View execution logs: `docker exec schoolcafe-scraper cat /var/log/cron.log`
+
+Notes about Windows and shell scripts
+
+- On Windows, text editors may check out files with CRLF line endings which can break shell script shebang lines inside Linux containers (the kernel treats `#!/bin/bash\r` as a different interpreter). To avoid this, the scraper Dockerfile performs a quick conversion of `entrypoint.sh` to LF during image build. We also recommend adding a `.gitattributes` file to enforce LF for `.sh` files and other scripts.
+- Do not commit secrets (API keys or private calendar ICS URLs) into the repository. Keep them in `.env.docker` or use your orchestrator's secret mechanism.
 
 ---
 
