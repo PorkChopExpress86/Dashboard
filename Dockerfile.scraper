@@ -17,6 +17,9 @@ COPY scraper.cron /work/scraper.cron
 # Make entrypoint executable
 RUN chmod +x /entrypoint.sh
 
+# Ensure entrypoint has Unix line endings (convert CRLF -> LF) so shebang works
+RUN sed -i 's/\r$//' /entrypoint.sh || true
+
 # Note: Python dependencies and cron will be installed by entrypoint.sh
 # This allows for easier updates without rebuilding
 
