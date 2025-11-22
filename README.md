@@ -108,6 +108,13 @@ The easiest way to run the dashboard with all features including the automated s
 
 Note: When running with Docker Compose you do not need to create or activate the project's `.venv` virtual environment. The container image installs the dependencies from `requirements.txt` and runs the app inside the container.
 
+Important: `.env` vs `.env.docker`
+
+- `.env` is the filename the application reads by default when you run the app locally (bare Python / virtualenv). Keep a local `.env` for development — do not commit it.
+- `.env.docker` is the example Docker Compose environment file used by the included `docker-compose.yml` via the `env_file:` setting. It's intended to be a local file that you copy from `.env.example` and customize for your host/container environment. Because `.env.docker` may contain secrets (API keys, private ICS URLs), this repository's `.gitignore` excludes it and it is not tracked. Keep `.env.docker` local and out of version control.
+
+If you accidentally committed a secrets-containing `.env.docker`, you'll need to purge it from Git history and rotate the secrets. See "Purging sensitive files from Git history" below for a local purge recipe.
+
 #### Prerequisites
 - Docker and Docker Compose installed
 - (Optional) OpenWeatherMap API key for live weather
