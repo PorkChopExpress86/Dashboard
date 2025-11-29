@@ -1,6 +1,8 @@
 import httpx
 import logging
-from datetime import datetime
+import asyncio
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 from app.models import WeatherInfo
 from app.config import get_settings
 
@@ -8,6 +10,8 @@ logger = logging.getLogger(__name__)
 
 _CACHE: dict[str, WeatherInfo] = {}
 _FAILED: set[str] = set()
+_LAST_REFRESH: datetime | None = None
+_REFRESH_TASK: asyncio.Task | None = None
 
 
 def _fetch_openweather(city: str, api_key: str) -> WeatherInfo | None:
@@ -144,7 +148,11 @@ def get_weather(city: str | None = None) -> WeatherInfo:
                             icon = "bi-cloud-lightning"
                         elif "fog" in w or "mist" in w:
                             icon = "bi-cloud-fog"
-                        time_str = datetime.fromtimestamp(ts).strftime('%I %p').lstrip('0')
+                        # Convert UTC timestamp to local timezone
+                        settings = get_settings()
+                        local_tz = ZoneInfo(settings.timezone)
+                        local_time = datetime.fromtimestamp(ts, tz=local_tz)
+                        time_str = local_time.strftime('%I %p').lstrip('0')
                         hourly.append({
                             "time": time_str,
                             "temp": temp,
@@ -162,5 +170,45 @@ def get_weather(city: str | None = None) -> WeatherInfo:
             live.hourly = None
 
     _CACHE[c] = live
+    global _LAST_REFRESH
+    _LAST_REFRESH = datetime.now()
     return live
+
+
+def _should_refresh_weather() -> bool:
+    """Check if weather cache should be refreshed based on time interval."""
+    settings = get_settings()
+    if _LAST_REFRESH is None:
+        return True
+    elapsed = datetime.now() - _LAST_REFRESH
+    return elapsed >= timedelta(minutes=settings.weather_refresh_minutes)
+
+
+def clear_weather_cache():
+    """Clear weather cache to force a refresh on next request."""
+    global _CACHE, _LAST_REFRESH
+    _CACHE.clear()
+    _LAST_REFRESH = None
+    logger.info("Weather cache cleared")
+
+
+async def _background_refresh_weather():
+    """Background task to periodically refresh weather data."""
+    while True:
+        try:
+            settings = get_settings()
+            interval = max(5, settings.weather_refresh_minutes)
+            await asyncio.sleep(interval * 60)
+            logger.info("Background weather refresh triggered")
+            clear_weather_cache()
+        except Exception as exc:
+            logger.exception("Exception in background weather refresh: %s", exc)
+
+
+def start_background_refresh():
+    """Start the background weather refresh task."""
+    global _REFRESH_TASK
+    if _REFRESH_TASK is None:
+        _REFRESH_TASK = asyncio.create_task(_background_refresh_weather())
+        logger.info("Weather background refresh task started")
 

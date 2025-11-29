@@ -1,6 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Auto-refresh page every hour to get latest data -->
+<script>
+  // Auto-refresh every 60 minutes (3600000 ms)
+  setTimeout(function() {
+    location.reload();
+  }, 3600000);
+  
+  // Update the "last updated" time every minute
+  let startTime = new Date();
+  setInterval(function() {
+    let elapsed = Math.floor((new Date() - startTime) / 60000);
+    let updateTimeEl = document.getElementById('update-time');
+    if (elapsed === 0) {
+      updateTimeEl.textContent = 'Just now';
+    } else if (elapsed === 1) {
+      updateTimeEl.textContent = '1 minute ago';
+    } else {
+      updateTimeEl.textContent = elapsed + ' minutes ago';
+    }
+  }, 60000);
+</script>
+
 <!-- Hero / Title Section -->
 <div class="dashboard-header">
   <h1 class="dashboard-title"><i class="bi bi-house-heart-fill me-3"></i>HomeBrain Dashboard</h1>

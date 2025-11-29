@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from app.config import get_settings
 from app.routers.dashboard import router as dashboard_router
 from app.routers.api import router as api_router
-from app.services import calendar_service
+from app.services import calendar_service, weather_service
 
 
 def create_app() -> FastAPI:
@@ -24,6 +24,11 @@ def create_app() -> FastAPI:
         # Kick off background refresh of calendar events (Google ICS if configured)
         try:
             calendar_service.start_background_refresh()
+        except Exception:
+            pass
+        # Kick off background refresh of weather data
+        try:
+            weather_service.start_background_refresh()
         except Exception:
             pass
 

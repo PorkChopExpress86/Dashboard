@@ -1,6 +1,6 @@
 {
   "view_id": "4322524b-1f7e-476a-9139-814c671143ef",
-  "scraped_at": "2025-11-17T07:04:29.160158",
+  "scraped_at": "2025-11-28T19:08:53.695391",
   "week_dates": [
     "Mon 17 NOV",
     "Tue 18 NOV",
@@ -23,12 +23,12 @@
         },
         {
           "name": "Nacho/Taco Meat",
-          "calories": "299",
+          "calories": "240",
           "allergens": []
         },
         {
           "name": "NACHOS COMBO (MEAT AND CHEESE)",
-          "calories": "492",
+          "calories": "433",
           "allergens": [
             "Milk",
             "Wheat",
@@ -223,7 +223,7 @@
         },
         {
           "name": "Served only with...",
-          "calories": "177",
+          "calories": "178",
           "allergens": [
             "Milk",
             "Wheat",
@@ -396,7 +396,7 @@
         },
         {
           "name": "Served only with...",
-          "calories": "177",
+          "calories": "178",
           "allergens": [
             "Milk",
             "Wheat",
@@ -557,7 +557,7 @@
         },
         {
           "name": "Served only with...",
-          "calories": "177",
+          "calories": "178",
           "allergens": [
             "Milk",
             "Wheat",

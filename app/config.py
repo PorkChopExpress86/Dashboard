@@ -21,6 +21,7 @@ class Settings(BaseSettings):
     calendar_refresh_minutes: int = Field(default=30, alias="CALENDAR_REFRESH_MINUTES")
     calendar_cache_dir: str = Field(default="./cache", alias="CALENDAR_CACHE_DIR")
     calendar_ical_sources: str | None = Field(default=None, alias="CALENDAR_ICAL_SOURCES")
+    weather_refresh_minutes: int = Field(default=60, alias="WEATHER_REFRESH_MINUTES")
 
 
 @lru_cache
