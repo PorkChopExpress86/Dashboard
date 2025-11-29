@@ -22,6 +22,10 @@
       </div>
 
       <hr class="my-4" />
+      <h6 class="section-title"><i class="bi bi-radar me-1"></i>Weather Radar</h6>
+      <div id="radar-map" class="radar-map" data-lat="{{ weather_lat }}" data-lon="{{ weather_lon }}"></div>
+
+      <hr class="my-4" />
       <h6 class="section-title"><i class="bi bi-clock-history me-1"></i>Next 6 Hours</h6>
       <div class="hourly-forecast">
         {% if weather.hourly %}
