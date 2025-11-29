@@ -1,4 +1,8 @@
 // Main client-side JS
+let radarMap = null;
+let radarMarker = null;
+let radarRefreshInterval = null;
+
 document.addEventListener('DOMContentLoaded', () => {
   initRadarMap();
   initGeolocation();
@@ -12,20 +16,20 @@ function initRadarMap() {
   const lat = parseFloat(radarEl.dataset.lat) || 41.8781;
   const lon = parseFloat(radarEl.dataset.lon) || -87.6298;
 
-  const map = L.map('radar-map').setView([lat, lon], 7);
+  radarMap = L.map('radar-map').setView([lat, lon], 7);
 
   // Base tile layer (OpenStreetMap)
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
+  }).addTo(radarMap);
 
   // Add marker for current location
-  L.marker([lat, lon]).addTo(map)
+  radarMarker = L.marker([lat, lon]).addTo(radarMap)
     .bindPopup('Your Location')
     .openPopup();
 
   // Fetch RainViewer radar frames and add the latest
-  fetchRadarLayer(map);
+  fetchRadarLayer(radarMap);
 }
 
 // Fetch radar data from RainViewer API
@@ -46,8 +50,19 @@ async function fetchRadarLayer(map) {
       });
       radarLayer.addTo(map);
 
+      // Clear any existing interval
+      if (radarRefreshInterval) {
+        clearInterval(radarRefreshInterval);
+      }
+
       // Update radar layer every 5 minutes
-      setInterval(async () => {
+      radarRefreshInterval = setInterval(async () => {
+        // Check if map element still exists
+        if (!document.getElementById('radar-map')) {
+          clearInterval(radarRefreshInterval);
+          radarRefreshInterval = null;
+          return;
+        }
         try {
           const newResponse = await fetch('https://api.rainviewer.com/public/weather-maps.json');
           const newData = await newResponse.json();
@@ -100,13 +115,14 @@ function initGeolocation() {
 
 // Update radar map center and marker when geolocation succeeds
 function updateRadarMapLocation(lat, lon) {
-  const radarEl = document.getElementById('radar-map');
-  if (!radarEl || !radarEl._leaflet_map) {
-    // Map not initialized yet via Leaflet internal reference
-    // Try to find map through L.map instances
+  if (!radarMap || !radarMarker) {
     return;
   }
   
-  // If we have access to the map instance, update it
-  // This is a simple approach - in production you'd store the map reference
+  // Update map center
+  radarMap.setView([lat, lon], 7);
+  
+  // Update marker position
+  radarMarker.setLatLng([lat, lon]);
+  radarMarker.setPopupContent('Your Location (detected)');
 }

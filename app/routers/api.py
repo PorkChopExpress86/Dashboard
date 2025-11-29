@@ -1,15 +1,9 @@
 from fastapi import APIRouter
-from pydantic import BaseModel
 
 from app.services import calendar_service, tasks_service, weather_service
 
 
 router = APIRouter()
-
-
-class LocationUpdate(BaseModel):
-    lat: float
-    lon: float
 
 
 @router.get("/health")
