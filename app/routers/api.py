@@ -1,9 +1,15 @@
 from fastapi import APIRouter
+from pydantic import BaseModel
 
 from app.services import calendar_service, tasks_service, weather_service
 
 
 router = APIRouter()
+
+
+class LocationUpdate(BaseModel):
+    lat: float
+    lon: float
 
 
 @router.get("/health")
@@ -25,3 +31,15 @@ def api_tasks_today():
 def api_weather():
     info = weather_service.get_weather()
     return info.model_dump()
+
+
+@router.get("/location")
+def api_get_location():
+    """Return the current configured location for the dashboard."""
+    from app.config import get_settings
+    settings = get_settings()
+    return {
+        "lat": settings.weather_lat or 41.8781,
+        "lon": settings.weather_lon or -87.6298,
+        "city": settings.location_city or "Your City"
+    }
