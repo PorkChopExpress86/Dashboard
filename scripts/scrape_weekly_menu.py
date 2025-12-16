@@ -125,13 +125,9 @@ def scrape_weekly_menu(view_id="4322524b-1f7e-476a-9139-814c671143ef"):
     options.add_argument("--disable-dev-shm-usage")
     
     remote_url = os.environ.get("SELENIUM_REMOTE_URL")
-    print(f"SELENIUM_REMOTE_URL: {remote_url}")
-    
     if remote_url:
-        print(f"Using remote Selenium at {remote_url}")
         driver = webdriver.Remote(command_executor=remote_url, options=options)
     else:
-        print("Using local ChromeDriver")
         from selenium.webdriver.chrome.service import Service
         from webdriver_manager.chrome import ChromeDriverManager
         service = Service(ChromeDriverManager().install())
@@ -169,93 +165,67 @@ def scrape_weekly_menu(view_id="4322524b-1f7e-476a-9139-814c671143ef"):
         # Parse the first date to check if it's in the past
         if week_dates:
             try:
-                today = datetime.now().date()
-                
-                # Keep navigating forward until we reach a week that includes today
-                max_attempts = 20  # Prevent infinite loop
-                attempts = 0
-                
-                while attempts < max_attempts:
-                    # Parse "Mon 10 NOV" format
-                    first_date_parts = week_dates[0].split()
-                    last_date_parts = week_dates[-1].split() if len(week_dates) > 0 else []
+                # Parse "Mon 10 NOV" format
+                first_date_parts = week_dates[0].split()
+                if len(first_date_parts) >= 3:
+                    day_num = int(first_date_parts[1])
+                    month_abbr = first_date_parts[2].upper()
                     
-                    if len(first_date_parts) >= 3 and len(last_date_parts) >= 3:
-                        # Parse first date
-                        day_num_first = int(first_date_parts[1])
-                        month_abbr_first = first_date_parts[2].upper()
-                        
-                        # Parse last date
-                        day_num_last = int(last_date_parts[1])
-                        month_abbr_last = last_date_parts[2].upper()
-                        
-                        # Convert month abbreviation to number
-                        month_map = {'JAN':1,'FEB':2,'MAR':3,'APR':4,'MAY':5,'JUN':6,
-                                    'JUL':7,'AUG':8,'SEP':9,'OCT':10,'NOV':11,'DEC':12}
-                        month_num_first = month_map.get(month_abbr_first[:3], datetime.now().month)
-                        month_num_last = month_map.get(month_abbr_last[:3], datetime.now().month)
-                        
-                        # Create date objects for comparison
-                        current_year = datetime.now().year
-                        first_menu_date = datetime(current_year, month_num_first, day_num_first).date()
-                        last_menu_date = datetime(current_year, month_num_last, day_num_last).date()
-                        
-                        print(f"Week range: {first_menu_date} to {last_menu_date}, Today: {today}")
-                        
-                        # Check if today is within this week
-                        if first_menu_date <= today <= last_menu_date:
-                            print("Found the week containing today!")
-                            break
-                        
-                        # If the entire week is in the past, navigate forward
-                        if last_menu_date < today:
-                            print(f"Week is in the past (ends {last_menu_date}), navigating forward...")
-                            
-                            # Look for next/forward navigation buttons
-                            next_button_selectors = [
-                                "button[aria-label*='next']",
-                                "button[aria-label*='Next']",
-                                "button[title*='next']",
-                                "button[title*='Next']",
-                                ".next-week-button",
-                                "button.MuiIconButton-root:has(svg[data-testid='ArrowForwardIosIcon'])",
-                                "//button[contains(@aria-label, 'next')]",
-                                "//button[contains(@aria-label, 'Next')]",
-                            ]
-                            
-                            clicked = False
-                            for selector in next_button_selectors:
-                                try:
-                                    if selector.startswith("//"):
-                                        button = driver.find_element(By.XPATH, selector)
-                                    else:
-                                        button = driver.find_element(By.CSS_SELECTOR, selector)
-                                    
-                                    print(f"Clicking next button (selector: {selector})")
-                                    button.click()
-                                    time.sleep(3)
-                                    
-                                    # Check if we moved forward
-                                    new_week_dates = get_week_dates()
-                                    if new_week_dates != week_dates:
-                                        week_dates = new_week_dates
-                                        print(f"Navigated to: {week_dates}")
-                                        clicked = True
-                                        break
-                                except Exception as e:
-                                    continue
-                            
-                            if not clicked:
-                                print("Could not find next week button, stopping navigation")
-                                break
-                        else:
-                            # Week is in the future, use it
-                            break
-                    else:
-                        break
+                    # Convert month abbreviation to number
+                    month_map = {'JAN':1,'FEB':2,'MAR':3,'APR':4,'MAY':5,'JUN':6,
+                                'JUL':7,'AUG':8,'SEP':9,'OCT':10,'NOV':11,'DEC':12}
+                    month_num = month_map.get(month_abbr[:3], datetime.now().month)
                     
-                    attempts += 1
+                    # Create date object for comparison
+                    current_year = datetime.now().year
+                    first_menu_date = datetime(current_year, month_num, day_num).date()
+                    today = datetime.now().date()
                     
+                    print(f"First menu date: {first_menu_date}, Today: {today}")
+                    
+                    # If the menu week is in the past, try clicking "next week" button
+                    if first_menu_date < today:
+                        print("Menu is for a past week, attempting to navigate forward...")
+                        
+                        # Look for next/forward navigation buttons
+                        # Common selectors: arrow buttons, next buttons, etc.
+                        next_button_selectors = [
+                            "button[aria-label*='next']",
+                            "button[aria-label*='Next']",
+                            "button[title*='next']",
+                            "button[title*='Next']",
+                            ".next-week-button",
+                            "button.MuiIconButton-root:has(svg[data-testid='ArrowForwardIosIcon'])",
+                            "//button[contains(@aria-label, 'next')]",
+                            "//button[contains(@aria-label, 'Next')]",
+                        ]
+                        
+                        clicked = False
+                        for selector in next_button_selectors:
+                            try:
+                                if selector.startswith("//"):
+                                    # XPath selector
+                                    button = driver.find_element(By.XPATH, selector)
+                                else:
+                                    # CSS selector
+                                    button = driver.find_element(By.CSS_SELECTOR, selector)
+                                
+                                print(f"Found next button with selector: {selector}")
+                                button.click()
+                                time.sleep(3)
+                                
+                                # Check if we moved forward
+                                new_week_dates = get_week_dates()
+                                if new_week_dates != week_dates:
+                                    week_dates = new_week_dates
+                                    print(f"Successfully navigated to: {week_dates}")
+                                    clicked = True
+                                    break
+                            except Exception as e:
+                                continue
+                        
+                        if not clicked:
+                            print("Could not find next week button, using current week shown")
             except Exception as e:
                 print(f"Error checking week navigation: {e}")
         

@@ -14,9 +14,12 @@ class Settings(BaseSettings):
     timezone: str = Field(default="America/New_York", alias="TIMEZONE")
     location_city: str = Field(default="Your City", alias="LOCATION_CITY")
     weather_api_key: str | None = Field(default=None, alias="WEATHER_API_KEY")
+    # How often (in minutes) weather should be refreshed proactively / TTL for cache
+    weather_refresh_minutes: int = Field(default=60, alias="WEATHER_REFRESH_MINUTES")
     calendar_source: str = Field(default="local_json", alias="CALENDAR_SOURCE")
-    weather_lat: float | None = Field(default=None, alias="WEATHER_LAT")
-    weather_lon: float | None = Field(default=None, alias="WEATHER_LON")
+    # Default to Chicago coordinates (approx) to avoid revealing precise location
+    weather_lat: float | None = Field(default=41.8781, alias="WEATHER_LAT")
+    weather_lon: float | None = Field(default=-87.6298, alias="WEATHER_LON")
     google_calendar_ical_url: str | None = Field(default=None, alias="GOOGLE_CALENDAR_ICAL_URL")
     calendar_refresh_minutes: int = Field(default=30, alias="CALENDAR_REFRESH_MINUTES")
     calendar_cache_dir: str = Field(default="./cache", alias="CALENDAR_CACHE_DIR")
