@@ -1,3 +1,3 @@
-# Run the lunch menu scraper every night at 10 PM
+# Run the lunch menu scraper daily at 10 PM (Central Time)
 0 22 * * * root cd /work && /usr/local/bin/python /work/scripts/scrape_weekly_menu.py >> /var/log/cron.log 2>&1
 

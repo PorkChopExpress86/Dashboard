@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}{{ action }} Recurring Event{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>{{ action }} Recurring Event</h1>
+        </div>
+        <div class="col text-end">
+            <a href="/admin" class="btn btn-secondary">Cancel</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Event Title *</label>
+                    <input type="text" class="form-control" id="title" name="title" 
+                           value="{{ event.title if event else '' }}" required>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="day_of_week" class="form-label">Day of Week *</label>
+                        <select class="form-select" id="day_of_week" name="day_of_week" required>
+                            {% for day_num, day_name in days_of_week %}
+                            <option value="{{ day_num }}" {% if event and event.day_of_week == day_num %}selected{% endif %}>
+                                {{ day_name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="timezone" class="form-label">Timezone *</label>
+                        <select class="form-select" id="timezone" name="timezone" required>
+                            <option value="America/Chicago" {% if not event or event.timezone == 'America/Chicago' %}selected{% endif %}>Central (America/Chicago)</option>
+                            <option value="America/New_York" {% if event and event.timezone == 'America/New_York' %}selected{% endif %}>Eastern (America/New_York)</option>
+                            <option value="America/Denver" {% if event and event.timezone == 'America/Denver' %}selected{% endif %}>Mountain (America/Denver)</option>
+                            <option value="America/Los_Angeles" {% if event and event.timezone == 'America/Los_Angeles' %}selected{% endif %}>Pacific (America/Los_Angeles)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="start_time" class="form-label">Start Time *</label>
+                        <input type="time" class="form-control" id="start_time" name="start_time" 
+                               value="{{ event.start_time.strftime('%H:%M') if event else '' }}" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="end_time" class="form-label">End Time *</label>
+                        <input type="time" class="form-control" id="end_time" name="end_time" 
+                               value="{{ event.end_time.strftime('%H:%M') if event else '' }}" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location (optional)</label>
+                    <input type="text" class="form-control" id="location" name="location" 
+                           value="{{ event.location if event and event.location else '' }}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <input type="text" class="form-control" id="category" name="category" 
+                           value="{{ event.category if event else 'recurring' }}">
+                    <small class="form-text text-muted">Used to color-code events (e.g., 'sports', 'dance', 'school')</small>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="start_date" class="form-label">Recurrence Start Date (optional)</label>
+                        <input type="date" class="form-control" id="start_date" name="start_date" 
+                               value="{{ event.start_date.isoformat() if event and event.start_date else '' }}">
+                        <small class="form-text text-muted">Leave blank for no start limit</small>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="end_date" class="form-label">Recurrence End Date (optional)</label>
+                        <input type="date" class="form-control" id="end_date" name="end_date" 
+                               value="{{ event.end_date.isoformat() if event and event.end_date else '' }}">
+                        <small class="form-text text-muted">Leave blank for ongoing recurrence</small>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">{{ action }} Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

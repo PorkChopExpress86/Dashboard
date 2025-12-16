@@ -26,6 +26,8 @@ def home(request: Request):
     weekly_menu = menu_service.get_weekly_menu()
     today_menu = menu_service.get_today_menu(now)
     tomorrow_menu = menu_service.get_tomorrow_menu(now)
+    today_menu_full = menu_service.get_today_menu_full()
+    tomorrow_menu_full = menu_service.get_tomorrow_menu_full()
 
     return templates.TemplateResponse(
         request,
@@ -42,5 +44,7 @@ def home(request: Request):
             "weekly_menu": weekly_menu,
             "today_menu": today_menu,
             "tomorrow_menu": tomorrow_menu,
+            "today_menu_full": today_menu_full,
+            "tomorrow_menu_full": tomorrow_menu_full,
         },
     )

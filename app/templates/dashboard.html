@@ -91,6 +91,14 @@
           <li class="menu-item">{{ entree }}</li>
           {% endfor %}
         </ul>
+      {% elif today_menu_full and today_menu_full.entrees %}
+        <hr class="my-4" />
+        <h6 class="section-title"><i class="bi bi-egg-fried me-1"></i>School Lunch</h6>
+        <ul class="menu-list">
+          {% for item in today_menu_full.entrees %}
+          <li class="menu-item">{{ item.name }} <span class="text-muted">({{ item.calories }} cal)</span></li>
+          {% endfor %}
+        </ul>
       {% endif %}
     </div>
   </div>
@@ -121,6 +129,14 @@
         <ul class="menu-list">
           {% for entree in tomorrow_menu %}
           <li class="menu-item">{{ entree }}</li>
+          {% endfor %}
+        </ul>
+      {% elif tomorrow_menu_full and tomorrow_menu_full.entrees %}
+        <hr class="my-4" />
+        <h6 class="section-title"><i class="bi bi-egg-fried me-1"></i>School Lunch</h6>
+        <ul class="menu-list">
+          {% for item in tomorrow_menu_full.entrees %}
+          <li class="menu-item">{{ item.name }} <span class="text-muted">({{ item.calories }} cal)</span></li>
           {% endfor %}
         </ul>
       {% endif %}

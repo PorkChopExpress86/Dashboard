@@ -6,6 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from app.config import get_settings
 from app.routers.dashboard import router as dashboard_router
 from app.routers.api import router as api_router
+from app.routers.admin import router as admin_router
 from app.services import calendar_service, weather_service
 
 
@@ -18,6 +19,7 @@ def create_app() -> FastAPI:
 
     app.include_router(dashboard_router)
     app.include_router(api_router, prefix="/api", tags=["api"])
+    app.include_router(admin_router, tags=["admin"])
 
     @app.on_event("startup")
     async def _startup_refresh():

@@ -10,6 +10,7 @@ from ics import Calendar
 
 from app.config import get_settings
 from app.models import Event
+from app.services import recurring_events_service
 
 DATA_FILE = Path(__file__).resolve().parent.parent / "data" / "sample_events.json"
 
@@ -196,6 +197,13 @@ def refresh_events(force: bool = False) -> None:
         if urls:
             events = _fetch_multi_ics(urls)
             print(f"[Calendar] Fetched {len(events)} events from ICS")
+            
+            # Debug: Check for dance/hip hop events
+            dance_events = [e for e in events if 'dance' in e.title.lower() or 'hip hop' in e.title.lower()]
+            if dance_events:
+                print(f"[Calendar] Found {len(dance_events)} dance/hip-hop events:")
+                for de in dance_events[:10]:  # Show first 10
+                    print(f"[Calendar]   - {de.start.strftime('%Y-%m-%d %H:%M')} {de.title}")
         else:
             events = []
         if not events:
@@ -228,7 +236,17 @@ def get_events() -> List[Event]:
         except Exception:
             _CACHE_LOADED_FROM_DISK = True
     refresh_events()
-    return _CACHE
+    
+    # Merge with recurring events for the next 90 days
+    now = datetime.now(get_tzinfo())
+    end_date = (now + timedelta(days=90)).date()
+    recurring_instances = recurring_events_service.get_recurring_instances_for_range(
+        now.date(), end_date
+    )
+    
+    # Combine and sort all events
+    all_events = _CACHE + recurring_instances
+    return sorted(all_events, key=lambda e: e.start)
 
 
 def _now(now: Optional[datetime] = None) -> datetime:
@@ -239,7 +257,18 @@ def events_today(now: Optional[datetime] = None) -> List[Event]:
     cur = _now(now)
     start_day = datetime.combine(cur.date(), time.min, tzinfo=cur.tzinfo)
     end_day = datetime.combine(cur.date(), time.max, tzinfo=cur.tzinfo)
-    return [e for e in get_events() if start_day <= e.start <= end_day]
+    all_events = get_events()
+    today_events = [e for e in all_events if start_day <= e.start <= end_day]
+    
+    # Debug logging
+    print(f"[Calendar] Filtering for today: {cur.date()}")
+    print(f"[Calendar]   Range: {start_day} to {end_day}")
+    print(f"[Calendar]   Total events in cache: {len(all_events)}")
+    print(f"[Calendar]   Events today: {len(today_events)}")
+    for evt in today_events:
+        print(f"[Calendar]     - {evt.start.strftime('%H:%M')} {evt.title}")
+    
+    return today_events
 
 
 def events_tomorrow(now: Optional[datetime] = None) -> List[Event]:

@@ -1,4 +1,4 @@
-from datetime import datetime, date
+from datetime import datetime, date, time
 from typing import Optional
 
 from pydantic import BaseModel
@@ -11,6 +11,19 @@ class Event(BaseModel):
     location: Optional[str] = None
     category: Optional[str] = None
     is_all_day: bool = False
+
+
+class RecurringEvent(BaseModel):
+    id: Optional[int] = None
+    title: str
+    day_of_week: int  # 0=Monday, 6=Sunday
+    start_time: time
+    end_time: time
+    timezone: str = "America/Chicago"
+    location: Optional[str] = None
+    category: Optional[str] = "recurring"
+    start_date: Optional[date] = None  # When recurrence starts
+    end_date: Optional[date] = None  # When recurrence ends (None = forever)
 
 
 class Task(BaseModel):
@@ -28,3 +41,9 @@ class WeatherInfo(BaseModel):
     low_f: float
     icon: str | None = None
     hourly: list[dict] | None = None
+
+
+class LunchMenuItem(BaseModel):
+    name: str
+    calories: str
+    allergens: list[str] = []
